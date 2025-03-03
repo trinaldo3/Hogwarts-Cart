@@ -169,6 +169,19 @@ let shippingEstimate = computed(()=>(subTotal.value>10000 ? 100 :50))
 let taxEstimate = computed(()=> subTotal.value * 0.08)
 
 let total = computed(()=> subTotal.value+shippingEstimate.value+taxEstimate.value)
+
+
+
+watch(
+  shoppingCartItems, 
+  ()=> {
+  localStorage.setItem(
+    'hogwartsShoppingCart', 
+    JSON.stringify(shoppingCartItems.value)
+  )
+}, 
+{deep: true}
+)
   </script>
   
   <style scoped>
